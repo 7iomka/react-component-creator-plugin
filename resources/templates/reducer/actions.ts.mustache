@@ -1,0 +1,7 @@
+import { Dispatch } from 'redux';
+import { {{ actionTypesEnumName }} } from './action-types';
+import { {{ actionTypeName }} } from './types';
+
+export const {{ actionFunctionName }} = (data: any) => (dispatch: Dispatch<{{ actionTypeName }}>) => {
+    dispatch({ type: {{ actionTypesEnumName }}.{{ mutationType }}, data });
+};
