@@ -12,24 +12,26 @@ public class SettingsForm extends AbstractSettingsForm<ComponentCreateOptions> {
     private JTextField specTemplateInput;
     private JTextField scssTemplateInput;
     private JTextField mdTemplateInput;
+    private JTextField indexTemplateInput;
 
     private JButton componentTemplateBtn;
     private JButton storyTemplateBtn;
     private JButton specTemplateBtn;
     private JButton scssTemplateBtn;
     private JButton mdTemplateBtn;
+    private JButton indexTemplateBtn;
+
     private JButton componentTemplateResetBtn;
     private JButton storybookTemplateReset;
     private JButton specTemplateResetBtn;
     private JButton scssTemplateReset;
     private JButton mdTemplateResetBtn;
+    private JButton indexTemplateResetBtn;
+
     private JCheckBox storybookCheckbox;
     private JCheckBox specCheckBox;
     private JCheckBox SCSSCheckBox;
     private JCheckBox mdCheckBox;
-    private JTextField indexTemplateInput;
-    private JButton indexTemplateBtn;
-    private JButton indexTemplateResetBtn;
     private JCheckBox indexCheckBox;
 
     public SettingsForm(ComponentCreateOptions options) {

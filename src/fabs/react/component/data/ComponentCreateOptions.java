@@ -18,9 +18,9 @@ public class ComponentCreateOptions extends AbstractOptions {
     private final String INDEX_TEMPLATE_KEY = "INDEX_TEMPLATE_KEY";
 
     private final String defaultComponentTemplateFile = "templates/component/{{componentName}}.tsx.mustache";
-    private final String defaultSassTemplateFile = "templates/component/_{{componentName}}.scss.mustache";
+    private final String defaultSassTemplateFile = "templates/component/{{componentName}}.module.scss.mustache";
     private final String defaultSpecTemplateFile = "templates/component/{{componentName}}.spec.tsx.mustache";
-    private final String defaultStoryTemplateFile = "templates/component/{{componentName}}.story.tsx.mustache";
+    private final String defaultStoryTemplateFile = "templates/component/{{componentName}}.stories.tsx.mustache";
     private final String defaultMarkdownTemplateFile = "templates/component/{{componentName}}.md.mustache";
     private final String defaultIndexTemplateFile = "templates/component/index.tsx.mustache";
 
@@ -39,15 +39,15 @@ public class ComponentCreateOptions extends AbstractOptions {
 
     private boolean isCreateStorybookDefaultChecked = false;
     private boolean isCreateSpecDefaultChecked = false;
-    private boolean isCreateScssDefaultChecked = false;
+    private boolean isCreateScssDefaultChecked = true;
     private boolean isCreateMarkdownDefaultChecked = false;
-    private boolean isCreateIndexDefaultChecked = false;
+    private boolean isCreateIndexDefaultChecked = true;
 
-    private Boolean isCreateSassFile = false;
+    private Boolean isCreateSassFile = true;
     private Boolean isCreateSpecFile = false;
     private Boolean isCreateStoryFile = false;
     private Boolean isCreateMDFile = false;
-    private Boolean isCreateIndexFile = false;
+    private Boolean isCreateIndexFile = true;
 
     private String componentName;
 
@@ -61,11 +61,12 @@ public class ComponentCreateOptions extends AbstractOptions {
         element.setAttribute(MD_TEMPLATE_KEY, markdownTemplateFile);
         element.setAttribute(INDEX_TEMPLATE_KEY, indexTemplateFile);
 
-        element.setAttribute(INDEX_CHECKBOX_KEY, Boolean.toString(isCreateIndexDefaultChecked));
         element.setAttribute(MD_CHECKBOX_KEY, Boolean.toString(isCreateMarkdownDefaultChecked));
         element.setAttribute(STORY_CHECKBOX_KEY, Boolean.toString(isCreateStorybookDefaultChecked));
         element.setAttribute(SCSS_CHECKBOX_KEY, Boolean.toString(isCreateScssDefaultChecked));
         element.setAttribute(SPEC_CHECKBOX_KEY, Boolean.toString(isCreateSpecDefaultChecked));
+        element.setAttribute(INDEX_CHECKBOX_KEY, Boolean.toString(isCreateIndexDefaultChecked));
+
         return element;
     }
 
@@ -76,13 +77,14 @@ public class ComponentCreateOptions extends AbstractOptions {
         setSpecTemplateFile(element.getAttributeValue(SPEC_TEMPLATE_KEY));
         setStoryTemplateFile(element.getAttributeValue(STORY_TEMPLATE_KEY));
         setMarkdownTemplateFile(element.getAttributeValue(MD_TEMPLATE_KEY));
-        setMarkdownTemplateFile(element.getAttributeValue(INDEX_TEMPLATE_KEY));
+        setIndexTemplateFile(element.getAttributeValue(INDEX_TEMPLATE_KEY));
 
-        setCreateIndexDefaultChecked(Boolean.valueOf(element.getAttributeValue(INDEX_TEMPLATE_KEY)));
         setCreateMarkdownDefaultChecked(Boolean.valueOf(element.getAttributeValue(MD_TEMPLATE_KEY)));
         setCreateStorybookDefaultChecked(Boolean.valueOf(element.getAttributeValue(STORY_CHECKBOX_KEY)));
         setCreateScssDefaultChecked(Boolean.valueOf(element.getAttributeValue(SCSS_CHECKBOX_KEY)));
         setCreateSpecDefaultChecked(Boolean.valueOf(element.getAttributeValue(SPEC_CHECKBOX_KEY)));
+        setCreateIndexDefaultChecked(Boolean.valueOf(element.getAttributeValue(INDEX_TEMPLATE_KEY)));
+
     }
 
     @Override
@@ -105,6 +107,7 @@ public class ComponentCreateOptions extends AbstractOptions {
         if (isCreateMDFile) {
             files.add(this.markdownTemplateFile);
         }
+
         if(isCreateIndexFile){
             files.add(this.indexTemplateFile);
         }
@@ -167,7 +170,7 @@ public class ComponentCreateOptions extends AbstractOptions {
 
     public void setIndexTemplateFile(String indexTemplateFile) {
         if (indexTemplateFile == null || indexTemplateFile.isEmpty()) {
-            this.indexTemplateFile = defaultMarkdownTemplateFile;
+            this.indexTemplateFile = defaultIndexTemplateFile;
             return;
         }
         this.indexTemplateFile = indexTemplateFile;
@@ -192,6 +195,7 @@ public class ComponentCreateOptions extends AbstractOptions {
     public boolean isMDTemplateDefault() {
         return markdownTemplateFile.equals(defaultMarkdownTemplateFile);
     }
+
     public boolean isIndexTemplateDefault() {
         return indexTemplateFile.equals(defaultIndexTemplateFile);
     }
@@ -236,9 +240,8 @@ public class ComponentCreateOptions extends AbstractOptions {
         return storyTemplateFile;
     }
 
-    public String getMarkdownTemplateFile() {
-        return markdownTemplateFile;
-    }
+    public String getMarkdownTemplateFile() { return markdownTemplateFile; }
+
     public String getIndexTemplateFile() {
         return indexTemplateFile;
     }
@@ -278,6 +281,7 @@ public class ComponentCreateOptions extends AbstractOptions {
     public void setCreateMarkdownDefaultChecked(boolean createMarkdownDefaultChecked) {
         isCreateMarkdownDefaultChecked = createMarkdownDefaultChecked;
     }
+
     public void setCreateIndexDefaultChecked(boolean createIndexDefaultChecked) {
         isCreateIndexDefaultChecked = createIndexDefaultChecked;
     }

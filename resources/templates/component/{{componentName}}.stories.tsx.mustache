@@ -3,10 +3,6 @@ import { storiesOf } from '@storybook/react';
 import centered from '@storybook/addon-centered/react';
 import {{ componentCamelcaseName }} from './{{componentName}}';
 
-const stories = storiesOf('{{ componentName }}', module)
-    .addDecorator(centered);
+const stories = storiesOf('{{ componentName }}', module).addDecorator(centered);
 
-stories.add(
-    'Default',
-    () => (<{{componentCamelcaseName}}/>),
-);
+stories.add('default', () => <{{componentCamelcaseName}} />);

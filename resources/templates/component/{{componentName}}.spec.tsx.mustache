@@ -1,9 +1,9 @@
 import React from 'react';
-import { expect } from 'chai';
+import renderer from 'react-test-renderer';
 import {{ componentCamelcaseName }} from './{{ componentName }}';
 
-describe('{{ componentName }}', function {{ componentCamelcaseName }}Spec () {
-    it('it exists', () => {
-        expect({{ componentCamelcaseName }}).to.be.ok;
-    });
+test('{{ componentCamelcaseName }}', () => {
+	const component = renderer.create(<{{componentCamelcaseName}} />);
+	const tree = component.toJSON();
+	expect(tree).toMatchSnapshot();
 });
